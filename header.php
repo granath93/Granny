@@ -10,23 +10,42 @@
 <body>
 <?php session_start();
 
-/*if(!isset($_SESSION['user_id'])){
-	header('location:login.php');
-} */
+
+if(isset($_SESSION["username"])){
+	$message = "<p> Du är inloggad <strong>" . $_SESSION["username"] . "</strong>. </p>";
+
+$loginUrl= "logout.php";
+$loginName="LOGGA UT";
+$memberUrl= "#";
+$memberName="MIN SIDA";
+
+}
+
+else{
+	$message="";
+	$loginUrl="login.php";
+	$loginName="LOGGA IN";
+	$memberUrl="#";
+	$memberName="SKAFFA INLOGGNING";
+
+}
 
 ?>
 <div class="wrapper">
 
 
 
+<div class="topNav">
+	<div class="navContent">
+		<a href="index.php">						<button style="<?php if($currentPage=="index")echo "background-color: #b2cefb;"?>">			HEM										</button></a>
+		<a href="#">								<button style="<?php if($currentPage=="#")echo "background-color: #b2cefb;"?>">				PRODUKT									</button></a>
+		<a href="#">								<button style="<?php if($currentPage=="#")echo "background-color: #b2cefb;"?>">				OM FÖRETAGET							</button></a>
+		<a href="<?php echo $memberUrl;?>">			<button style="<?php if($currentPage=="#")echo "background-color: #b2cefb;"?>">				<?php echo $memberName;?>				</button></a>
+		<a href="<?php echo $loginUrl;?>">			<button style="<?php if($currentPage=="login")echo "background-color: #b2cefb;"?>">			<?php echo $loginName;?>				</button></a>
+		<a href="#">								<button style="<?php if($currentPage=="#")echo "background-color: #b2cefb;"?>">				KUNDVAGN								</button></a>
+	 </div>
+</div>
 
-<nav>
-<a href="index.php">Hem</a>
-<a href="#">Produkt</a>
-<a href="#">Om Företaget</a>
-<a href="#">Skaffa inloggning</a>
-<a href="#">Logga in</a>
-<a href="#">Kundvagn</a>
-
-
-</nav>
+<div class="messageContent">
+	<?php echo $message;?>
+</div>

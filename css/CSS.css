@@ -9,15 +9,31 @@ Börjar med de selectorerna, sedan  classes och sist id
 */
 
 a{
-	text-decoration:none;
 	color:black;
+
 }
 
 
 body{
+	font-family: myriad pro;
 
 }
 
+
+
+h1{
+	font-size: 55px;
+	text-align: center;
+}
+
+h2{
+	font-size: 37px;
+}
+
+p{
+	font-size: 24px;
+
+}
 
 
 
@@ -26,8 +42,43 @@ body{
 */
 
 
+.content{
+	margin-left: 205px;
+	margin-right: 205px;
+}
 
+.messageContent{
+	text-align: center;
+	background-color: #ddeaff; 
+	border:1px;
+	border-color: black;
+	border-style: solid;
+}
 
+.navContent{
+	text-align: center;
+}
+
+.topNav{
+	background-color: black;
+	height: 100px;
+	padding:1px; 
+	margin-top: 150px;
+
+}
+
+.topNav a{
+	text-decoration: none;
+}
+
+.topNav button{
+	background-color: #ddeaff;
+	height: 100px;
+	width: 260px;
+	text-align: center;
+	display: inline;
+	font-size: 25px;
+}
 
 
 
