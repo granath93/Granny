@@ -11,11 +11,11 @@ $res = $mysqli->query($query) or die("Could not query database" . $mysqli->errno
 " : " . $mysqli->error); //Performs query
 
 while($row = $res->fetch_object()) { 
-$ett = ($row->ArticleId); 
-$tva = ($row->ArtName); 
+$ett = ($row->ArticleID); 
+$tva = ($row->ArticleName); 
 $tre = ($row->Price);
 
-echo $ett . $tva . $tre;
+echo $ett . "<br>" . "<br>" . $tva ."<br>" . $tre . "<br>" ;
 
 }
 ?>
