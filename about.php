@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+ <!-- <!DOCTYPE html>
 <HEAD>
  <TITLE>Om företaget</TITLE>
 <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
  <link rel="stylesheet" href="css/produkt.css" type="text/css">
- <!-- Javascript
+Javascript
  <script type="text/javascript"> 
  function hgsubmit() 
  { 
@@ -16,11 +16,23 @@
         } 
  } 
  </script> 
- slut Javascript  -->
+ slut Javascript  
  
  </head> 
  
- <body>
+ <body>-->
+<?php 
+
+$currentPage="about";
+
+include("database.php");
+include("header.php"); 
+?>
+
+<div class="content">
+
+
+
 <h1>Om företaget</h1>	
 <p>Vi skapade företaget Stödshoppen<br> för att underlätta pensionärers vardag.</p>
 <h2>Hör av dig till oss!</h2>
@@ -56,7 +68,6 @@ E-Mail Content: <textarea name="comment" cols="50" rows="5"></textarea><br><br>
  <input type="hidden" name="redirect" value="http://www.mydomain.com/redirect-path"> 
  </form> -->
 		</form>
-</body>
-</html>
+</div>
 
-
+<?php include("footer.php");

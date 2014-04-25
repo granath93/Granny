@@ -5,34 +5,32 @@ $currentPage="createMember";
 include("database.php");
 include("header.php"); ?>
 
-<html>
-<head>
+
 <div class="content">
 
 <h1>Välkommen!</h1>
-</head>
-</body>	
+
 <p>Här fyller du i dina uppgifter. Sedan är du redo att börja handla!</p>
 
 <div class="container">
 <form action="insert.php" method="post" id="newMember">
  		<label for ="Fname">Förnamn:</label>
- 			<input type="text" id="Fname" name="Fname" value="" /><br>
+ 			<input class="form" type="text" id="Fname" name="Fname" value="" /><br>
 			
- 			<label for ="Lname">Efternamn:</label>
- 			<input id="Lname" name="Lname" value=""/><br>
+ 			<label class="form" for ="Lname"><p>Efternamn:</p></label>
+ 			<input class="form" id="Lname" name="Lname" value=""/><br>
 			
-  			<label for ="Address">Adress:</label>
- 			<input type="text" id="Address" name="Address" value="" /><br>
+  			<label class="form"  for ="Address">Adress:</label>
+ 			<input  class="form" type="text" id="Address" name="Address" value="" /><br>
 			
-  			<label for ="Zip">Postnummer:</label>
- 			<input type="number" id="Zip" name="Zip" value="" /><br>
+  			<label class="form" for ="Zip">Postnummer:</label>
+ 			<input class="form" type="number" id="Zip" name="Zip" value="" /><br>
 			
- 			<label for ="Email">E-post:</label>
- 			<input type="text" id="Email" name="Email" value="" /><br>
+ 			<label class="form" for ="Email">E-post:</label>
+ 			<input class="form" type="text" id="Email" name="Email" value="" /><br>
 			
-			<label for ="Password">Lösenord:</label>
- 			<input type="password" id="Password" name="Password" value="" /><br><br>
+			<label class="form" for ="Password">Lösenord:</label>
+ 			<input class="form" type="password" id="Password" name="Password" value="" /><br><br>
 			
  			<input type="submit" id="changeID-form" value="Skicka" />
  		</form>
@@ -58,6 +56,5 @@ include("header.php"); ?>
 }
 }*/	
 ?>
-	
-	</body>
-</html>
+
+<?php include("footer.php");

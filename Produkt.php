@@ -1,11 +1,10 @@
-<HEAD>
- <TITLE>Om företaget</TITLE>
-<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
- <link rel="stylesheet" href="css/produkt.css" type="text/css">
- 
- </head> 
- 
- <body>
+
+<?php 
+$currentPage="product";
+
+include("database.php");
+include("header.php");  ?>
+
 <h1>Produkt</h1>	
 <p>Logga in för att börja handla.</p>
 <h2>Produkter vi säljer</h2>
@@ -103,5 +102,6 @@
 
 </div>  
 
-</body>
-</html>
+
+
+<?php include("footer.php"); ?>
