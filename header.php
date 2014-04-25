@@ -40,11 +40,11 @@ else{
 <div class="topNav">
 	<div class="navContent">
 		<a href="index.php">						<button style="<?php if($currentPage=="index")echo "background-color: #b2cefb;"?>">			HEM										</button></a>
-		<a href="Produkt.php">						<button style="<?php if($currentPage=="product")echo "background-color: #b2cefb;"?>">				PRODUKT							</button></a>
+		<a href="product.php">						<button style="<?php if($currentPage=="product")echo "background-color: #b2cefb;"?>">				PRODUKT							</button></a>
 		<a href="about.php">						<button style="<?php if($currentPage=="about")echo "background-color: #b2cefb;"?>">				OM FÖRETAGET						</button></a>
 		<a href="<?php echo $memberUrl;?>">			<button style="<?php if($currentPage=="#")echo "background-color: #b2cefb;"?>">				<?php echo $memberName;?>				</button></a>
 		<a href="<?php echo $loginUrl;?>">			<button style="<?php if($currentPage=="login")echo "background-color: #b2cefb;"?>">			<?php echo $loginName;?>				</button></a>
-		<a href="#">								<button style="<?php if($currentPage=="#")echo "background-color: #b2cefb;"?>">								KUNDVAGN				</button></a>
+		<a href="shoppingcart.php">					<button style="<?php if($currentPage=="shoppingcart")echo "background-color: #b2cefb;"?>">								KUNDVAGN				</button></a>
 	 </div>
 </div>
 
