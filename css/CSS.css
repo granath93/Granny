@@ -25,10 +25,6 @@ button{
 
 }
 
-button.login{
-	margin-left: 390px;
-
-}
 
 button.form{
 	margin-left: 390px;
@@ -45,18 +41,7 @@ h2{
 	font-size: 37px;
 }
 
-input.login{
-	margin: 0 6px 16px 2px;
-	width: 280px;
-	height: 30px;
-}
 
-label.login{
-	float:left;
-	text-align: right;
-	padding-right: 10px;
-	display: block;
-}
 
 input.form{
 	margin: 0 6px 16px 2px;
@@ -100,6 +85,11 @@ p{
 
 }
 
+.logga{
+	text-align: center;
+	margin:20px;
+}
+
 .loginContent{
 	margin-left: auto;
 	margin-right: auto;
@@ -122,13 +112,14 @@ p{
 	background-color: black;
 	height: 100px;
 	padding:1px; 
-	margin-top: 150px;
+	
 
 }
 
 .topNav a{
 	text-decoration: none;
 }
+
 
 .topNav button{
 	background-color: #ddeaff;

@@ -84,11 +84,11 @@ $mysqli->close();
 
 
 <form action="login.php" method="post" id="login-form">
-			<p><label class="login" for ="username">Din Email:</label></p>
-			 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input class="login" type="text" id="username" name="username" value="" /><br><br>
-			<p><label  class="login" for ="password">Ditt lösenord:</label></p>
-			 &nbsp; &nbsp;<input class="login" id="password" name="password" value=""/><br><br>
-			<button class="login" id="login"><p>Klar</p></button>
+			<p><label class="form" for ="username">Din Email:</label></p>
+			 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input class="form" type="text" id="username" name="username" value="" /><br><br>
+			<p><label  class="form" for ="password">Ditt lösenord:</label></p>
+			 &nbsp; &nbsp;<input class="form" id="password" name="password" value=""/><br><br>
+			<button class="form" id="login"><p>Klar</p></button>
 		</form>
 </div>
 

@@ -12,9 +12,9 @@ if(isset($_SESSION["username"])){
 	$user = $_SESSION["username"];
 	
 	$message = <<<END
-	<p>För att börja kolla in våra produkter går du in på <a href="product.php">PRODUKT</a>. Vill du se vad du har 
+	<p>För att börja kolla in våra produkter går du in på <a href="product.php">PRODUKTER</a>. Vill du se vad du har 
 	lagt i kundvagnen klickar du på <a href="shoppingcart.php">KUNDVAGN</a> och för att se din kontaktinformation
-	eller tidigare köp, gå till <a href="#">MIN SIDA</a>. </p> 
+	eller tidigare köp, gå till <a href="myPage.php">MIN SIDA</a>. </p> 
 END;
 }
 
@@ -35,6 +35,9 @@ END;
 <h1>Välkommen <?php echo $user; ?> !</h1>	
 
 <?php echo $message; ?>
+
+
+
 
 </div>
 
