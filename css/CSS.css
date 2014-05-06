@@ -41,6 +41,9 @@ h2{
 	font-size: 37px;
 }
 
+h3{
+	font-size: 28px;
+}
 
 
 input.form{
@@ -75,6 +78,10 @@ p{
 	margin-right: 205px;
 
 
+}
+
+.FAQ h3{
+	margin-bottom: 5px;
 }
 
 .footerContent{
