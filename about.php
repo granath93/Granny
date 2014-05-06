@@ -34,7 +34,8 @@ include("header.php");
 
 
 <h1>Om företaget</h1>	
-<p>Vi skapade företaget Stödshoppen<br> för att underlätta pensionärers vardag.</p>
+<p>Vi skapade företaget Stödshoppen för att underlätta pensionärers vardag.<br>
+	Vi är fyra studenter på högskolan i Halmstad som har utvecklat denna hemsidan.</p>
 <h2>Hör av dig till oss!</h2>
 
 <form action="#" method="post" id="kontakt">
