@@ -16,10 +16,10 @@ if(isset($_SESSION["username"])){
 
 $loginUrl= "logout.php";
 $loginName="LOGGA UT";
-$loginImg = "images/skaffain.png";
+$loginImg = "images/loggaut.png";
 $memberUrl= "myPage.php";
 $memberName="MIN SIDA";
-$memberImg = "images/skaffain.png";
+$memberImg = "images/minsida.png";
 
 }
 
