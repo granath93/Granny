@@ -3,14 +3,46 @@
 $currentPage="product";
 
 include("database.php");
-include("header.php");  ?>
+include("header.php");  
 
-<div class="content">
-
+$res = $mysqli->query('SELECT * FROM article ') or die("Could not query database" . $mysqli->errno . 
+	" : " . $mysqli->error);?>
+	
+		<div class="content">
+		
 <h1>Produkt</h1>	
 <p>Logga in för att börja handla.</p>
 <h2>Produkter vi säljer</h2>
 <h3>Beräknad leveranstid 3-4 arbetsdagar.<br>Klicka på produktens bild för större bild</h3>
+		
+	
+<?php
+	while($row = $res->fetch_object()) { 
+	$ArticleID = ($row->ArticleID);
+	$ArticleName = ($row->ArticleName);
+	$CategoryID = ($row->CategoryID);
+	$Color = ($row->Color);
+	$Description = ($row->Description);
+	$Image = ($row->Image);
+	//$Price = ($row->Price);
+	
+	//echo $ArticleID . "<br> Namn: " . $ArticleName . "<br>" . $CategoryID . "<br>" . 
+		//	$Color . "<br> Beskrivnin: " . $Description . "<br>" . $Image . "<br>"; 
+		?>
+
+
+			<ul>
+			<li> Namn:  <?php echo $ArticleName; ?>  </li>
+			<li> Beskrivning:  <?php echo $Description; ?>  </li>
+			</ul>
+			<img src="<?php echo $Image; ?>">
+			
+			<a href="shoppingcart.php?ArticleID=<?php echo $ArticleID; ?>"><button>LÄGG I KUNDVAGN</button></a>
+			
+	<?php } ?>
+
+
+
 
 <!-- <div style="width:100%">
 <a href="index.php"><img src="img/banner2.jpg"></a>
