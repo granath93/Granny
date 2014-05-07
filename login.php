@@ -88,7 +88,7 @@ $mysqli->close();
 			 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input class="form" type="text" id="username" name="username" value="" /><br><br>
 			<p><label  class="form" for ="password">Ditt lösenord:</label></p>
 			 &nbsp; &nbsp;<input class="form" id="password" name="password" value=""/><br><br>
-			<button class="form" id="login"><p>Klar</p></button>
+			<button class="form" id="login"><p>KLAR</p></button>
 		</form>
 </div>
 
