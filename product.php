@@ -5,6 +5,8 @@ $currentPage="product";
 include("database.php");
 include("header.php");  ?>
 
+<div class="content">
+
 <h1>Produkt</h1>	
 <p>Logga in för att börja handla.</p>
 <h2>Produkter vi säljer</h2>
@@ -34,7 +36,13 @@ include("header.php");  ?>
         <li>Beskrivning</li>  
       </ul>  
 	  <p>Pris:</p>
-  <button>LÄGG I KUNDVAGN</button>  
+<form target="paypal" action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
+<input type="hidden" name="cmd" value="_s-xclick">
+<input type="hidden" name="hosted_button_id" value="5UVEVR3M8SC4C">
+<input type="image" src="https://www.sandbox.paypal.com/en_US/i/btn/btn_cart_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+<img alt="" border="0" src="https://www.sandbox.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1">
+</form>
+
 </section> 
 
 <!-- Penna -->
@@ -56,7 +64,14 @@ include("header.php");  ?>
         <li>Beskrivning</li>  
       </ul>  
 	  <p>Pris:</p>
-  <button>LÄGG I KUNDVAGN</button>  
+<form target="paypal" action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
+<input type="hidden" name="cmd" value="_s-xclick">
+<input type="hidden" name="hosted_button_id" value="YW6R9H9TDMZLS">
+<input type="image" src="https://www.sandbox.paypal.com/en_US/i/btn/btn_cart_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+<img alt="" border="0" src="https://www.sandbox.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1">
+</form>
+
+
 </section> 
 
 <!-- Miniräknare -->
@@ -76,7 +91,13 @@ include("header.php");  ?>
         <li>Beskrivning</li>  
       </ul>  
 	  <p>Pris:</p>
-  <button>LÄGG I KUNDVAGN</button>  
+<form target="paypal" action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
+<input type="hidden" name="cmd" value="_s-xclick">
+<input type="hidden" name="hosted_button_id" value="D5ZRMZH6KRJ3L">
+<input type="image" src="https://www.sandbox.paypal.com/en_US/i/btn/btn_cart_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+<img alt="" border="0" src="https://www.sandbox.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1">
+</form>
+
 </section> 
 
 <!-- Suddigummi -->
@@ -98,11 +119,19 @@ include("header.php");  ?>
         <li>Beskrivning</li>  
       </ul>
 	  <p>Pris:</p>
-  <button>LÄGG I KUNDVAGN</button>  
+<form target="paypal" action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
+<input type="hidden" name="cmd" value="_s-xclick">
+<input type="hidden" name="hosted_button_id" value="GDYBDAR4F8KMS">
+<input type="image" src="https://www.sandbox.paypal.com/en_US/i/btn/btn_cart_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+<img alt="" border="0" src="https://www.sandbox.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1">
+</form>
+
+</form>
+
 </section> 
 
 </div>  
-
+</div>
 
 
 <?php include("footer.php"); ?>
