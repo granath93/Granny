@@ -9,7 +9,7 @@ include("header.php"); ?>
 
 <p style="text-align:center"> <br><br><br> Här hittar du dina beställningar, dina uppgifter, och allt annat som rör ditt medlemskap! </br><p>
 
-</br><p class="ChangeText"> Här kan du ändra dina uppgifter, om du exempelvis flyttat.</br> Bara fyll i de nya uppgifterna och klicka på Submit!</p>
+</br><p class="ChangeText"> Här kan du ändra dina uppgifter, om du exempelvis flyttat.</br> Bara fyll i de nya uppgifterna och klicka på klar!</p>
 <br>
  <form action="myPage.php" method="post" id="changeID-form" style="margin-left:200px; margin-right:auto;">
  		<p><label for ="Fname">Förnamn:</label></p>
@@ -22,7 +22,7 @@ include("header.php"); ?>
  			<input type="number" id="Zip" name="Zip" value="" /><br>
  			<p><label for ="Email">E-post:</label></p>
  			<input type="text" id="Email" name="Email" value="" /><br>
- 			<button class="login" style="margin-left:200px; margin-right:auto;" id="login"><p>Klar</p></button>
+ 			<button class="login" style="margin-left:200px; margin-right:auto;" id="login"><p>KLAR</p></button>
  		</form>
 <?php
 	if(isset($_POST['gem']))
