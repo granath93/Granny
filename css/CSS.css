@@ -111,6 +111,12 @@ p{
 	border-style: solid;
 }
 
+.MPcontent {
+	margin-left:900px;
+	margin-right:200px;
+}
+
+
 .navContent{
 	text-align: center;
 }
@@ -135,6 +141,11 @@ p{
 	text-align: center;
 	display: inline;
 	font-size: 25px;
+}
+
+.NCcontent {
+	margin-left: 700px;
+	margin-right: 500px;
 }
 
 
