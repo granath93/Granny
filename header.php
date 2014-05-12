@@ -42,7 +42,7 @@ else{
 
 	<div class="logga">
 		<a href="index.php"><img  src="images/Logga.png"></a>
-	</div>
+	</div><!--stänger logga-->
 
 <div class="topNav">
 	<div class="navContent">
@@ -52,8 +52,10 @@ else{
 		<a href="<?php echo $memberUrl;?>">		<button style="<?php if($currentPage == "myPage" || $currentPage == "createMember")echo "background-color: #b2cefb;"?>">	<img src="<?php echo $memberImg;?>">					<br>	<?php echo $memberName;?>	</button></a>
 		<a href="<?php echo $loginUrl;?>">		<button style="<?php if($currentPage=="login")echo "background-color: #b2cefb;"?>">											<img src="<?php echo $loginImg;?>">						<br>	<?php echo $loginName;?>	</button></a>
 		<a href="shoppingcart.php">				<button style="<?php if($currentPage=="shoppingcart")echo "background-color: #b2cefb;"?>">									<img src="images/kundvagn.png">							<br>	KUNDVAGN					</button></a>
-	 </div>	
-</div>
+	 </div><!--stänger navContent-->
+</div><!--stänger topNav-->
+</div><!--stänger wrapper-->
+
 
 <div class="messageContent">
 	<?php echo $message;?>
