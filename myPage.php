@@ -1,8 +1,8 @@
 <?php
-
+$currentPage="myPage";
 include("database.php");
 include("header.php");
-$currentPage="myPage";
+
 $tableOrder= "order";
 $feedback = '';
 

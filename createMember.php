@@ -1,7 +1,9 @@
 <?php
-
+$currentPage="createMember";
 include("database.php");
 include("header.php"); 
+
+
 
 $feedback = '';
  
