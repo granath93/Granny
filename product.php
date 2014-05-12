@@ -20,25 +20,30 @@ $res = $mysqli->query('SELECT * FROM article ') or die("Could not query database
 	while($row = $res->fetch_object()) { 
 	$ArticleID = ($row->ArticleID);
 	$ArticleName = ($row->ArticleName);
-	$CategoryID = ($row->CategoryID);
 	$Color = ($row->Color);
+	$CategoryID = ($row->CategoryID);
+	$Price = ($row->Price);
 	$Description = ($row->Description);
 	$Image = ($row->Image);
-	//$Price = ($row->Price);
+	
+	/*<div class="col-md-6">*/
 	
 	//echo $ArticleID . "<br> Namn: " . $ArticleName . "<br>" . $CategoryID . "<br>" . 
 		//	$Color . "<br> Beskrivnin: " . $Description . "<br>" . $Image . "<br>"; 
 		?>
 
-
-			<ul>
-			<li> Namn:  <?php echo $ArticleName; ?>  </li>
-			<li> Beskrivning:  <?php echo $Description; ?>  </li>
-			</ul>
-			<img src="<?php echo $Image; ?>">
+	<p style="float:left">
 			
+			Namn: <?php echo $ArticleName; ?><br>
+			Färg: <?php echo $Color; ?><br>
+			Beskrivning: <?php echo $Description; ?><br>
+			Pris: <?php echo $Price; ?>kr<br>
+			
+			<!--<a href="$Image">--><img src="<?php echo $Image; ?>" width="128" height="80"><!-- alt="$Image"><img src="<?php echo $Image; ?>" width="140" height="60"></a>
+			-->
 			<a href="shoppingcart.php?ArticleID=<?php echo $ArticleID; ?>"><button>LÄGG I KUNDVAGN</button></a>
-			
+			</p>
+	
 	<?php } ?>
 
 
@@ -47,9 +52,9 @@ $res = $mysqli->query('SELECT * FROM article ') or die("Could not query database
 <!-- <div style="width:100%">
 <a href="index.php"><img src="img/banner2.jpg"></a>
 </div> -->
-
+<!--
 <div class="product">  
-<!-- Fjärrkontroll -->
+<!-- Fjärrkontroll 
 	<header>  
 		<hgroup>  
 	<h2>Fjärrkontroll</h2>  
@@ -57,7 +62,7 @@ $res = $mysqli->query('SELECT * FROM article ') or die("Could not query database
 	</header>   
 <figure>  
 <a href=images/fjärr.png><img src=images/fjärr.png width=140px height=300px alt=images/fjärr.png></a> 
-<!-- <img src=images/fjärr.png> -->  
+<!-- <img src=images/fjärr.png> 
 </figure>  
   
 <section>   
@@ -77,7 +82,7 @@ $res = $mysqli->query('SELECT * FROM article ') or die("Could not query database
 
 </section> 
 
-<!-- Penna -->
+<!-- Penna 
 <header>  
 <hgroup>  
 <h2>Penna</h2>  
@@ -85,7 +90,7 @@ $res = $mysqli->query('SELECT * FROM article ') or die("Could not query database
 </header>   
 <figure>  
 <a href=images/bigpen.png><img src=images/bigpen.png width=300px height=40px alt=images/bigpen.png></a> 
-<!-- <img src=images/bigpen.png>   -->
+<!-- <img src=images/bigpen.png>  
 </figure>  
   
 <section>   
@@ -106,14 +111,14 @@ $res = $mysqli->query('SELECT * FROM article ') or die("Could not query database
 
 </section> 
 
-<!-- Miniräknare -->
+<!-- Miniräknare 
 <header>  
 <hgroup>  
 <h2>Miniräknare</h2>  
 </hgroup>  
 </header>   
 <a href=images/bigcalculcalator.png><img src=images/bigcalculator.png width=260px height=260px alt=images/bigcalculator.png></a> 
-<!-- <img src=images/bigcalculator.png>  -->
+<!-- <img src=images/bigcalculator.png> 
   
 <section>    
       <ul>  
@@ -132,7 +137,7 @@ $res = $mysqli->query('SELECT * FROM article ') or die("Could not query database
 
 </section> 
 
-<!-- Suddigummi -->
+<!-- Suddigummi 
 <header>  
 <hgroup>  
 <h2>Suddigummi</h2>  
@@ -140,7 +145,7 @@ $res = $mysqli->query('SELECT * FROM article ') or die("Could not query database
 </header>   
 <figure>  
 <a href=images/bigeraser.png><img src=images/bigeraser.png width=200px height=100px alt=images/bigeraser.png></a> 
-<!-- <img src=images/bigeraser.png>   -->
+<!-- <img src=images/bigeraser.png>   
 </figure>  
   
 <section>    
@@ -163,7 +168,11 @@ $res = $mysqli->query('SELECT * FROM article ') or die("Could not query database
 </section> 
 
 </div>  
+-->
+
 </div>
+
+
 
 
 <?php include("footer.php"); ?>
