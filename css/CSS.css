@@ -98,8 +98,6 @@ p{
 .content{
 	margin-left: 205px;
 	margin-right: 205px;
-
-
 }
 
 .FAQ h3{
@@ -141,6 +139,21 @@ p{
 	border:1px;
 	border-color: black;
 	border-style: solid;
+}
+
+.MPcontent {
+	margin-left:900px;
+	margin-right:200px;
+}
+
+.MPcontentOrder {
+	margin-left:100px;
+	margin-right:200px;
+}
+
+.NCcontent {
+	margin-left: 700px;
+	margin-right: 500px;
 }
 
 .navContent{
