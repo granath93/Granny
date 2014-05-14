@@ -37,9 +37,9 @@ include("header.php");
 <p>Vi skapade företaget Stödshoppen för att underlätta pensionärers vardag.<br>
 	Vi är fyra studenter på Högskolan i Halmstad som har utvecklat denna hemsidan.</p>
 <h2>Hör av dig till oss!</h2>
-<div class "fieldset">
+<div class="fieldset">
 <form action="#" method="post" id="kontakt">
-	<fieldset>
+
 
 	<p><label class="form" for="Name" method="post" action="formmail.php">Namn:</label></p>
 				<input class="form" type="text" name="name" id="Namn"><br>
@@ -53,27 +53,10 @@ include("header.php");
 	<p><label class="form" for="essay">Meddelande:</label></p><br>
 	<textarea name="essay" rows="10" cols="30" name="Meddelande:" id="essay"></textarea><br>
 	<!-- <input class="form" type="submit" value="SKICKA"> -->
-				<button class="form" id="login"><p>SKICKA</p></button>
-	</fieldset>
+				<button class="form" id="login"><p>SKICKA</p></button>	
 	
 </div>
-<!-- Exmplet formulär: 
- 
-- Replace the words in bold black with your domain name and your email. 
-- Replace the words in bold blue with whatever you want that part of the form to say. 
-- Save it as a .html . 
-- Upload and you are done. 
 
-<form action="http://www.mydomain.com/cgi-sys/formmail.pl" method="post" name="hgmailer"> 
- <input type="hidden" name="recipient" value="myemail@mydomain.com"> 
- <input type="hidden" name="subject" value="FormMail E-Mail"> 
-Whatever you want to say here<br><br> 
-Visitor Name: <input type="text" name="name" size="30" value=""><br> 
-Visitor E-Mail: <input type="text" name="email" size="30" value=""><br> 
-E-Mail Content: <textarea name="comment" cols="50" rows="5"></textarea><br><br>
- <input type="button" value="E-Mail Me!" onclick="hgsubmit();"> 
- <input type="hidden" name="redirect" value="http://www.mydomain.com/redirect-path"> 
- </form> -->
 		</form>
 </div>
 
