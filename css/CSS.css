@@ -114,6 +114,9 @@ p{
 	top:10px;
   }
 
+.footer{
+	clear:both;
+}
 .footerContent{
 	margin:20px 50px 10px 170px;
 	display: inline;

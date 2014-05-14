@@ -1,7 +1,7 @@
 	</div>
 
 </div>
-
+<div class="footer">
 	<br><br>
 	<hr>
 
@@ -24,6 +24,6 @@
 			<a href="FAQ.php"><button><p>VANLIGA FRÅGOR OCH SVAR</p></button></a><br><br>
 			<p> Här får du svar på frågor <br> angående webbutiken <br>och leveranser</p>
 		</div>
-
+</div>
 	</body>
 </html>

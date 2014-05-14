@@ -1,5 +1,5 @@
 <?php
-
+//session_start();
 
 
 if(isset($_GET['ArticleID'])){
@@ -12,14 +12,14 @@ if(isset($_GET['ArticleID'])){
 $query = <<<END
 		SELECT * 
 		FROM article
-		WHERE ArticleID = $articleId;
+		WHERE ArticleID = '$articleId';
 END;
 
 
 
 $res = $mysqli->query($query) or die("Could not query database" . $mysqli->errno . 
 	" : " . $mysqli->error);
-while($row = $res->fetch_object()){
+/*while($row = $res->fetch_object()){
 
 $article=$row->ArticleName;
 
@@ -29,10 +29,10 @@ $_SESSION['amount'] = 1;
 $_SESSION['price'] = $row->Price;
 $_SESSION['color'] = $row->Color;
 $_SESSION['image'] = $row->Image;
-
+$_SESSION['totalPrice'] = $_SESSION['price'];
 }
 
-/*
+*/
 $row = $res->fetch_object();
 
 
@@ -40,13 +40,13 @@ $row = $res->fetch_object();
         					"name" => $row->ArticleName,
                             "amount" => 1,
                             "price" => $row->Price,
-                            "productID" => $articleId,
+                            "productID" => $row->ArticleID,
                             "image" => $row->Image,
                             "color" => $row->Color
                             ); echo "new session";
 
 
-
+/*
 foreach($_SESSION['product'] as $i => $cartItems){
 
 $color = <<<END
@@ -60,7 +60,6 @@ $color = <<<END
 </p>
 END;
 }
-
 */
 
 
