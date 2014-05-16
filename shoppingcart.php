@@ -1,83 +1,18 @@
 <?php 
 $currentPage="shoppingcart";
 $articleId="";
-$color="";
-$price="";
-
+$cart="";
+$totalPrice="";
+$totalAmount="";
 
 
 include("database.php");
+include("header.php");
 include("addInCart.php");
-include("addToOrderhistory.php"); 
-include("header.php"); 
-
-
-/*
-
-if(!isset($_SESSION['id'])){
-
-
-$_SESSION['id'] ="" ;
-$_SESSION['name'] ="" ;
-$_SESSION['amount'] = "";
-$_SESSION['price'] = "";
-$_SESSION['color'] ="";
-$_SESSION['image'] = "";
-$_SESSION['totalPrice'] = $_SESSION['price'];
-
-
-$content ="
-	<hr>
-	<p>Du har inte lagt något i kundvagenen än</p>
-
-	<hr>";
-
-
-}
-*/
-
-/*
-
-if(isset($_GET['ArticleID'])){
-
-	$articleId = isset($_GET['ArticleID']) ? $_GET['ArticleID'] : '';
-
-
-	$query = <<<END
-			SELECT * 
-			FROM article
-			WHERE ArticleID = $articleId;
-END;
-
-
-
-	$res = $mysqli->query($query) or die("Could not query database" . $mysqli->errno . 
-		" : " . $mysqli->error);
-		while($row = $res->fetch_object()){
-
-		$_SESSION['id'] =$row->ArticleID ;
-		$_SESSION['name'] =$row->ArticleName ;
-		$_SESSION['amount'] = 1;
-		$_SESSION['price'] = $row->Price;
-		$_SESSION['color'] = $row->Color;
-		$_SESSION['image'] = $row->Image;
-		$_SESSION['totalPrice'] = $_SESSION['price'];
-
-		if(isset($_POST['minus'])){
-			$_SESSION['amount']= $_SESSION['amount'] - 1;
-		}
-
-		if(isset($_POST['add'])){
-			$_SESSION['amount'] = $_SESSION['amount'] + 1;
-		}
-
-
-		}
-		}*/
-
-		?>
-
-
+include ("process.php");
+//include("addToOrder.php"); 
+?>
+		
 
 		<div class="content">
 
@@ -98,46 +33,73 @@ END;
   <p> Här ser du alla dina produkter som du lagt i kundvagnen </p>
 
 <hr>
-		        	<!-- <div class="article">
 
-					<u> <p><strong><?php echo $_SESSION['name']?> </strong></u></p><br>
+<?php 
 
-					<img src="<?php echo $_SESSION['image']?>"><br>
+if(!isset($_SESSION['product'])){
+	echo $cart="Du har inte lagt något i kundvagnen ännu";
 
-					 <p>Antal: <form action="" method="post"><button name="minus"> - </button><strong> <?php echo $_SESSION['amount'] ?></strong> <button name="add"> + </button></form> <br>
+}
 
-					  <p>Pris: <strong> <?php echo $_SESSION['price'] ?> kr</strong><br>
+else{
 
-					 Färg: <strong> <?php echo $_SESSION['color'] ?> </strong></p><br>
-					
-				</div>
-<hr>
-	<p>Totalsumma: <strong> <?php echo $_SESSION['totalPrice'] ?></strong> kr<button class="form">BETALA PRODUKTERNA</p></button>
--->
 
-		<?php foreach($_SESSION['product'] as $i => $cartItems){
+		foreach($_SESSION['product'] as $i => $cartItems){
 
-$color = <<<END
+
+$cart .= <<<END
 
 
 <div class="article">
-  <u> <p><strong>{$cartItems['name']} </strong></u></p><br>
-  <p>Färg: <strong>  {$cartItems['color']} </strong></p><br>
-  <img src="{$cartItems['image']}"><br>
-   <p>Pris: <strong>{$cartItems['price']}kr</strong><br>
-  ID: {$cartItems['productID']}<br>
-  <p>Antal: <form action="" method="post"><button name="minus"> - </button><strong> {$cartItems['amount']}</strong> <button name="add"> + </button></form> <br>
+	  <u> <p><strong>{$cartItems['name']} </strong></u></p><br>
+	  <p>Färg: <strong>  {$cartItems['color']} </strong></p><br>
+	  <img src="{$cartItems['image']}"><br>
+	   <p>Pris: <strong>{$cartItems['price']}kr</strong><br>
+	   <p>Antal: 
+
+	   <a href="addAmount.php?ArticleID={$cartItems['articleID']}&action=minus&arrayID=$i"> <strong><button> - </button></a>
+	  
+	    {$cartItems['amount']}
+
+	  <a href="addAmount.php?ArticleID={$cartItems['articleID']}&action=add&arrayID=$i"> <button> + </button></strong></a> <br>
 
   </div>
 
 END;
+
+/*
+$cart .= <<<END
+<form action="process.php" method="post">
+<input type="hidden" name="item_name['{$i}']" value="{$cartItems['name']}">
+<input type="hidden" name="item_id['{$i}']" value="{$cartItems['articleID']}">
+<input type="hidden" name="item_desc['{$i}']" value="{$cartItems['color']}">
+<input type="hidden" name="item_amount['{$i}']" value="{$cartItems['amount']}">
+<input type="hidden" name="item_price['{$i}']" value="{$cartItems['price']}">
+END;
+*/
+
+$totalPrice += $cartItems['price']*$cartItems['amount'];
+$totalAmount += $cartItems['amount'];
 } 
 
-echo $color;?>
-
+echo $cart;?>
+	
+	<div class="totalPrice">
 		<hr>
-	<p>Totalsumma: <strong> <?php echo $_SESSION['totalPrice'] ?></strong> kr<button class="form">BETALA PRODUKTERNA</p></button>
-			
+	<p>Totalsumma: <strong> <?php echo $totalPrice ?></strong> kr
+	<a href="product.php"><button class="shoppingButton">HANDLA MER</p></button></a>
+	<button class="shoppingButton">BETALA PRODUKTERNA</p></button>
+	<p>Antal artiklar: <strong> <?php echo $totalAmount ?></strong> st
+	</div>		
+	
+
+<?php }
+
+} ?>
+
+
+
+
 	<!--		<form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
 				<input type="hidden" name="cmd" value="_s-xclick">
 				<input type="hidden" name="hosted_button_id" value="UAYFBBQLCVHYQ">
@@ -152,7 +114,6 @@ echo $color;?>
 				
 			</form>-->
 
-<?php } ?>
 
 
 
