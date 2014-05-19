@@ -3,7 +3,8 @@ $currentPage="myPage";
 include("database.php");
 include("header.php");
 
-$tableOrder= "order";
+$tableShipment= "shipment";
+$tableArticle= "article";
 $feedback = '';
 
 if(!empty($_POST)) {
@@ -50,41 +51,45 @@ END;
 
 	<div class="MPcontentOrder">
 	
-	<br></br>
-	<p> Här kan du se dina tidigare beställningar.</p>
-		
+		<br></br>
+			<p> Här kan du se dina tidigare beställningar.</p>
+	
 <?php
-/* $result = <<<END
-	--
-	-- Gets all posts from DB
-	--
+$result = <<<END
+	
 	SELECT *
-	FROM {$tableOrder};
+	FROM {$tableShipment}
 END;
 
 $res = $mysqli->query($result) or die ("Could not query database" . $mysqli->errno ." : " . $mysqli->error);
 
 	while($row = $res->fetch_object()) {
-	$date = strtotime($row->postTimestamp); 
+	$date = strtotime($row->Date); 
 	$date = date("d M Y H:i", $date); 
 	
-	$OrderID	= utf8_decode(htmlspecialchars($row->OrderID));
+	$ShipmentID	= utf8_decode(htmlspecialchars($row->ShipmentID));
 	$Date		= utf8_decode(htmlspecialchars($row->Date));
 	$Amount		= utf8_decode(htmlspecialchars($row->Amount));
 	$Price		= utf8_decode(htmlspecialchars($row->Price));
 
 	$result .= <<<END
-		<div class="MPcontentOrder">
-			<p>Beställt: {$Date}</p>
-			<p>{$OrderID}</p>
-			<p>{$Amount}</p>
-			<p>{$Price}</p>
-		</div>
+		<div class="MPcontentOrderTd">
+			<tr><p>
+				<td>Order {$ShipmentID}:</td>
+			<br>
+				<td>Beställt: {$Date}</td>
+			<br>
+				<td>Antal: {$Amount}</td>
+			<br>
+				<td>Pris: {$Price}</td></p>
+			</tr>
+		</div class="MPcontentOrderTd">
 END;
-} */
+} 
+echo $result
 ?>
-		
-<div class="MPcontent">
+</div>
+	<div class="MPcontent">
 
 <br></br>
 
@@ -107,6 +112,6 @@ END;
 			<button class="login" style="margin-left:200px; margin-right:auto;" id="login"><p>KLAR</p></button>
  		</form>
 	</div>
-</div>
+
 
 <?php include("footer.php");?>
