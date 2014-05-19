@@ -8,7 +8,6 @@ $totalAmount="";
 
 include("database.php");
 include("header.php");
-include("addInCart.php");
 include ("process.php");
 //include("addToOrder.php"); 
 ?>
@@ -67,16 +66,7 @@ $cart .= <<<END
 
 END;
 
-/*
-$cart .= <<<END
-<form action="process.php" method="post">
-<input type="hidden" name="item_name['{$i}']" value="{$cartItems['name']}">
-<input type="hidden" name="item_id['{$i}']" value="{$cartItems['articleID']}">
-<input type="hidden" name="item_desc['{$i}']" value="{$cartItems['color']}">
-<input type="hidden" name="item_amount['{$i}']" value="{$cartItems['amount']}">
-<input type="hidden" name="item_price['{$i}']" value="{$cartItems['price']}">
-END;
-*/
+
 
 $totalPrice += $cartItems['price']*$cartItems['amount'];
 $totalAmount += $cartItems['amount'];
@@ -88,7 +78,7 @@ echo $cart;?>
 		<hr>
 	<p>Totalsumma: <strong> <?php echo $totalPrice ?></strong> kr
 	<a href="product.php"><button class="shoppingButton">HANDLA MER</p></button></a>
-	<button class="shoppingButton">BETALA PRODUKTERNA</p></button>
+	<a href="seeOrder.php"><button class="shoppingButton">BETALA PRODUKTERNA</p></button></a>
 	<p>Antal artiklar: <strong> <?php echo $totalAmount ?></strong> st
 	</div>		
 	

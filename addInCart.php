@@ -1,5 +1,6 @@
 <?php
-
+session_start();
+include("database.php");
 
 if(isset($_GET['ArticleID'])){
 
@@ -73,7 +74,7 @@ if(isset($_SESSION['product'])){
     }
   }
 
-
+header("location:shoppingcart.php");
 
 //check the cart content.
 //var_dump($_SESSION['product']);
