@@ -118,7 +118,7 @@ p{
 	clear:both;
 }
 .footerContent{
-	margin:20px 50px 10px 170px;
+	margin:2% 8% 5% 10%;
 	display: inline;
 	text-align: center;
 	float: left;
@@ -145,13 +145,12 @@ p{
 }
 
 .MPcontent {
-	margin-left:900px;
-	margin-right:200px;
+	clear: left;
+	float: right;
 }
 
 .MPcontentOrder {
-	margin-left:100px;
-	margin-right:200px;
+	float: left;
 }
 
 .NCcontent {
@@ -160,7 +159,7 @@ p{
 }
 
 .navContent{
-	text-align: center;
+	width: 110%;
 }
 
 
@@ -169,27 +168,20 @@ p{
 	margin-left: 250px; 
 }
 
-.topNav{
-	background-color: black;
-	height: 100px;
-	padding:1px; 
-	
-
-}
-
-.topNav a{
-	text-decoration: none;
-}
-
-
 .topNav button{
 	background-color: #ddeaff;
-	height: 100px;
-	width: 260px;
+	height: 50%;
+	width: 60%;
 	text-align: center;
-	display: inline;
-	font-size: 25px;
+	/*display: inline;*/
+	font-size: 15px;
+	border-style: solid;
+	border-color: black;
 }
+
+
+
+
 
 .totalPrice{
 	clear:both;
@@ -216,10 +208,29 @@ p{
 	.footerContent{max-height: 15%}
 
 }
+
+
+@media screen and (max-width: 1000px){
+	.topNav button{max-width: 15%}
+	.topNav button{max-height: 20%}
+	.topNav button{font-size: 75%}
+	.footerContent{max-width: 15%}
+	.footerContent{max-height: 15%}
+	.content{width: 50%}
+	p{font-size: 100%}
+	h1{text-align: center}
+	.NCcontent{margin-left: 30%}
+	.NCcontent{margin-right: 30%}
+	.MPcontentOrder{text-align: center}
+
+}	
+
+
+}
 @media screen and (max-width: 800px){
 	.topNav button{max-width: 15%}
 	.topNav button{max-height: 20%}
-	.topNav button{font-size: 100%}
+	.topNav button{font-size: 75%}
 	.footerContent{max-width: 15%}
 	.footerContent{max-height: 15%}
 	.content{width: 50%}

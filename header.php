@@ -46,8 +46,8 @@ else{
 <div class="topNav">
 	<div class="navContent">
 		<a href="index.php">					<button style="<?php if($currentPage=="index")echo "background-color: #b2cefb;"?>">											<img src="images/hem.png">								<br>	HEM							</button></a>
-		<a href="product.php">					<button style="<?php if($currentPage=="product")echo "background-color: #b2cefb;"?>">										<img src="images/pro1.png"><img src="images/pro2.png"> 	<br>	PRODUKTER					</button></a>
-		<a href="about.php">					<button style="<?php if($currentPage=="about")echo "background-color: #b2cefb;"?>">											<img src="images/omför.png">							<br>	OM FÖRETAGET				</button></a>
+		<a href="product.php">					<button style="<?php if($currentPage=="product")echo "background-color: #b2cefb;"?>">										<img src="images/pro1.png">							 	<br>	PRODUKTER					</button></a>
+		<a href="about.php">					<button style="<?php if($currentPage=="about")echo "background-color: #b2cefb;"?>">											<img src="images/omför.png">							<br>	FÖRETAGET					</button></a>
 		<a href="<?php echo $memberUrl;?>">		<button style="<?php if($currentPage=="myPage" || $currentPage == "createMember")echo "background-color: #b2cefb;"?>">		<img src="<?php echo $memberImg;?>">					<br>	<?php echo $memberName;?>	</button></a>
 		<a href="<?php echo $loginUrl;?>">		<button style="<?php if($currentPage=="login")echo "background-color: #b2cefb;"?>">											<img src="<?php echo $loginImg;?>">						<br>	<?php echo $loginName;?>	</button></a>
 		<a href="shoppingcart.php">				<button style="<?php if($currentPage=="shoppingcart")echo "background-color: #b2cefb;"?>">									<img src="images/kundvagn.png">							<br>	KUNDVAGN					</button></a>
