@@ -168,6 +168,14 @@ p{
 	margin-left: 250px; 
 }
 
+
+.FAQtant{
+	margin-right:50px; 
+	float: right;
+	height: 150px;
+	z-index: -2;
+}
+
 .topNav button{
 	background-color: #ddeaff;
 	height: 50%;
@@ -178,9 +186,6 @@ p{
 	border-style: solid;
 	border-color: black;
 }
-
-
-
 
 
 .totalPrice{

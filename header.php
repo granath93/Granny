@@ -41,7 +41,7 @@ else{
 <div class="wrapper">
 
 	<div class="logga">
-		<a href="index.php"><img  src="images/Logga.png"></a>  <div class="tant"><a href="FAQ.php"><img  src="images/hjälpreda.png"></a></div>
+		<a href="index.php"><img  src="images/Logga.png"></a>  <div class="FAQtant"><a href="FAQ.php"><img  src="images/hjälpreda.png"></a></div>
 	</div><!--stänger logga-->
 
 <div class="topNav">
