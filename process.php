@@ -1,14 +1,21 @@
 <?php
 
-
 include_once("database.php");
 include_once("paypal.php");
+include_once("paypal.class.php");
 
 
 $paypalmode = ($PayPalMode=='sandbox') ? '.sandbox' : '';
 
 if($_POST) //Post Data received from product list page.
 {
+	//Other important variables like tax, shipping cost
+	$TotalTaxAmount 	= 2.58;  //Sum of tax for all items in this order. 
+	$HandalingCost 		= 2.00;  //Handling cost for this order.
+	$InsuranceCost 		= 1.00;  //shipping insurance cost for this order.
+	$ShippinDiscount 	= -3.00; //Shipping discount for this order. Specify this as negative number.
+	$ShippinCost 		= 3.00; //Although you may change the value later, try to pass in a shipping amount that is reasonably accurate.
+
 	//we need 4 variables from product page Item Name, Item Price, Item Number and Item Quantity.
 	//Please Note : People can manipulate hidden field amounts in form,
 	//In practical world you must fetch actual price from database using item id. 
@@ -20,7 +27,7 @@ if($_POST) //Post Data received from product list page.
     {
         $product_code 	= filter_var($_POST['item_id'][$key], FILTER_SANITIZE_STRING); 
 		
-		$res = $mysqli->query("SELECT ArticleName, Description, Price FROM article WHERE ArticleID='$product_code' LIMIT 1");
+		$res = $mysqli->query("SELECT ArticleName, Description, Price FROM article WHERE ArticleID ='$product_code' LIMIT 1");
 		$row = $res->fetch_object();
 		
         $paypal_data .= '&L_PAYMENTREQUEST_0_NAME'.$key.'='.urlencode($row->ArticleName);
@@ -42,7 +49,7 @@ if($_POST) //Post Data received from product list page.
 											);
     }
 				
-/*	//Grand total including all tax, insurance, shipping cost and discount
+	//Grand total including all tax, insurance, shipping cost and discount
 	$GrandTotal = ($ItemTotalPrice + $TotalTaxAmount + $HandalingCost + $InsuranceCost + $ShippinCost + $ShippinDiscount);
 	
 								
@@ -52,7 +59,7 @@ if($_POST) //Post Data received from product list page.
 								'shippin_discount'=>$ShippinDiscount,
 								'shippin_cost'=>$ShippinCost,
 								'grand_total'=>$GrandTotal);
-*/	
+	
 	//create session array for later use
 	$_SESSION["paypal_products"] = $paypal_product;
 	
@@ -64,7 +71,12 @@ if($_POST) //Post Data received from product list page.
 				$paypal_data.				
 				'&NOSHIPPING=0'. //set 1 to hide buyer's shipping address, in-case products that does not require shipping
 				'&PAYMENTREQUEST_0_ITEMAMT='.urlencode($ItemTotalPrice).
-		
+				'&PAYMENTREQUEST_0_TAXAMT='.urlencode($TotalTaxAmount).
+				'&PAYMENTREQUEST_0_SHIPPINGAMT='.urlencode($ShippinCost).
+				'&PAYMENTREQUEST_0_HANDLINGAMT='.urlencode($HandalingCost).
+				'&PAYMENTREQUEST_0_SHIPDISCAMT='.urlencode($ShippinDiscount).
+				'&PAYMENTREQUEST_0_INSURANCEAMT='.urlencode($InsuranceCost).
+				'&PAYMENTREQUEST_0_AMT='.urlencode($GrandTotal).
 				'&PAYMENTREQUEST_0_CURRENCYCODE='.urlencode($PayPalCurrencyCode).
 				'&LOCALECODE=GB'. //PayPal pages to match the language on your website.
 				'&LOGOIMG=http://www.sanwebe.com/wp-content/themes/sanwebe/img/logo.png'. //site logo
@@ -126,6 +138,12 @@ if(isset($_GET["token"]) && isset($_GET["PayerID"]))
 				'&PAYMENTREQUEST_0_PAYMENTACTION='.urlencode("SALE").
 				$paypal_data.
 				'&PAYMENTREQUEST_0_ITEMAMT='.urlencode($ItemTotalPrice).
+				'&PAYMENTREQUEST_0_TAXAMT='.urlencode($paypal_product['assets']['tax_total']).
+				'&PAYMENTREQUEST_0_SHIPPINGAMT='.urlencode($paypal_product['assets']['shippin_cost']).
+				'&PAYMENTREQUEST_0_HANDLINGAMT='.urlencode($paypal_product['assets']['handaling_cost']).
+				'&PAYMENTREQUEST_0_SHIPDISCAMT='.urlencode($paypal_product['assets']['shippin_discount']).
+				'&PAYMENTREQUEST_0_INSURANCEAMT='.urlencode($paypal_product['assets']['insurance_cost']).
+				'&PAYMENTREQUEST_0_AMT='.urlencode($paypal_product['assets']['grand_total']).
 				'&PAYMENTREQUEST_0_CURRENCYCODE='.urlencode($PayPalCurrencyCode);
 
 	//We need to execute the "DoExpressCheckoutPayment" at this point to Receive payment from user.

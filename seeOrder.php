@@ -46,16 +46,15 @@ include ("process.php");
 
 		foreach($_SESSION['product'] as $i => $cartItems){
 
-
+// <img src="{$cartItems['image']}"><br>
 $cart .= <<<END
 
 
 <div class="article">
-	  <u> <p><strong>{$cartItems['name']} </strong></u></p><br>
-	  <p>Färg: <strong>  {$cartItems['color']} </strong></p><br>
-	  <img src="{$cartItems['image']}"><br>
-	   <p>Pris: <strong>{$cartItems['price']}kr</strong><br>
-	   <p>Antal: <strong>{$cartItems['amount']}</strong>
+	  <u> <p><strong>{$cartItems['name']} </strong></u><br>
+	  Färg: <strong>  {$cartItems['color']} </strong><br>
+	    Pris: <strong>{$cartItems['price']}kr</strong><br>
+	   Antal: <strong>{$cartItems['amount']}</strong></p>
 
 	  <br>
 

@@ -4,6 +4,7 @@
 <meta name="viewport" content="width=device-width" charset="utf-8">
 <link rel="stylesheet" href="css/normalize.css" >
 <link rel="stylesheet" href="css/CSS.css" >
+<link rel="stylesheet" href="css/cssShopingcart.css" >
 <script src="#" charset="utf-8"></script>
 	<title>StödShoppen</title>
 </head>
@@ -40,7 +41,7 @@ else{
 <div class="wrapper">
 
 	<div class="logga">
-		<a href="index.php"><img  src="images/Logga.png"></a>
+		<a href="index.php"><img  src="images/Logga.png"></a>  <div class="tant"><a href="FAQ.php"><img  src="images/hjälpreda.png"></a></div>
 	</div><!--stänger logga-->
 
 <div class="topNav">
