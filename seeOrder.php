@@ -22,7 +22,7 @@ $totalAmount="";
 
 
 include("database.php");
-include ("process.php");
+include ("paypal/process.php");
 
 ?>
 		
@@ -62,7 +62,7 @@ $cart .= <<<END
 
 END;
 
-
+/*
 
 $cart .= <<<END
 <form action="process.php" method="post">
@@ -72,7 +72,7 @@ $cart .= <<<END
 <input type="hidden" name="item_amount['{$i}']" value="{$cartItems['amount']}">
 <input type="hidden" name="item_price['{$i}']" value="{$cartItems['price']}">
 END;
-
+*/
 
 $totalPrice += $cartItems['price']*$cartItems['amount'];
 $totalAmount += $cartItems['amount'];
@@ -83,7 +83,7 @@ echo $cart;?>
 	<div class="totalPrice">
 		<hr>
 	<p>Totalsumma: <strong> <?php echo $totalPrice ?></strong> kr
-	<a href="process.php"><button class="shoppingButton">BETALA PRODUKTERNA</p></button></a>
+	<a href="addToOrder.php"><button class="shoppingButton">BETALA PRODUKTERNA</p></button></a>
 	<p>Antal artiklar: <strong> <?php echo $totalAmount ?></strong> st
 	</div>		
 	
