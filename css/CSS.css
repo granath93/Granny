@@ -104,15 +104,14 @@ p{
 	margin-bottom: 5px;
 }
 
-.fieldset {
-  padding: 6em;
-  float: center;
-  position: fixed; left: 50%; top: 50%;
-	width:100px;
-	height:100px;
-	left:10px;
-	top:10px;
+.fieldset1 {
+	width: 300px;
+	height: 1000px;
+	
+	text-align: center;
+	padding-right: 50px;
   }
+
 
 .footer{
 	clear:both;
@@ -162,7 +161,23 @@ p{
 	width: 110%;
 }
 
+  .produktplacering
+{
+display: inline;
+float: left;
+width: 500px;
+height: 700px;
+margin: 50px;
+font-family: arial;
+}
 
+.produktplacering p 
+{
+border-right: 2px solid #aaaaaa;
+height: 100%;
+
+  }
+  
 .shoppingButton{
 
 	margin-left: 250px; 
