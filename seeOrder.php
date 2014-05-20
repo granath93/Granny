@@ -24,8 +24,7 @@ $totalPrice="";
 $totalAmount="";
 
 
-include("database.php");
-include ("process.php"); ?>
+include("database.php"); ?>
 
 
 		<div class="content">

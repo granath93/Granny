@@ -13,8 +13,7 @@ $totalAmount="";
 
 
 include("database.php");
-include("header.php");
-include ("process.php"); ?>
+include("header.php"); ?>
 
 	<div class="content">
 
