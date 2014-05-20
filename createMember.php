@@ -65,8 +65,8 @@ $mysqli->close();
 			&nbsp; &nbsp; &nbsp; <input type="text" id="Lname" name="Lname" value=""/><br><br>
 			 <label for="Address" for ="Address">Adress:</label>
 			&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input type="text" id="Address" name="Address" value=""/><br><br>
-			 <label for="Zip" for ="Zip">Postnummer:</label>
-			 <input type="text" id="Zip" name="Zip" value=""/><br><br>
+			<label for ="Zip">Postnummer:</label>
+ 			<input type="number" id="Zip" name="Zip" value=""/><br></br>
 			 <label for="Email" for ="Email">Din E-post:</label>
 			&nbsp; &nbsp; &nbsp; <input type="text" id="Email" name="Email" value=""/><br><br>
 			 <label for="Password" for ="Password">Ditt lösenord:</label>

@@ -5,7 +5,9 @@ include("header.php");
 
 $tableShipment= "shipment";
 $tableArticle= "article";
+$tableCustomer= "customer";
 $feedback = '';
+
 
 if(!empty($_POST)) {
         
@@ -48,52 +50,54 @@ END;
 	$mysqli->close();
 }
 ?>
-
 	<div class="MPcontentOrder">
-	
 		<br></br>
-			<p> Här kan du se dina tidigare beställningar.</p>
-	
+			<p> Här kan du se dina tidigare beställningar.<br><br></p>
+
 <?php
 $result = <<<END
-	
 	SELECT *
-	FROM {$tableShipment}
-	WHERE CustomerID=$_SESSION[userId]
+	FROM {$tableShipment}, {$tableArticle}
+	WHERE CustomerID=$_SESSION[userId] AND article.ArticleID=shipment.ArticleID
 END;
 
 $res = $mysqli->query($result) or die ("Could not query database" . $mysqli->errno ." : " . $mysqli->error);
-
-	while($row = $res->fetch_object()) {
-	$date = strtotime($row->Date); 
-	$date = date("d M Y H:i", $date); 
 	
-	$ShipmentID	= utf8_decode(htmlspecialchars($row->ShipmentID));
-	$Date		= utf8_decode(htmlspecialchars($row->Date));
-	$Amount		= utf8_decode(htmlspecialchars($row->Amount));
-	$Price		= utf8_decode(htmlspecialchars($row->Price));
-
-	$result .= <<<END
+	while($row = $res->fetch_object()) {
+	
+	$ShipmentID	= ($row->ShipmentID);
+	$Date		= ($row->Date);
+	$Amount		= ($row->Amount);
+	$Price		= ($row->Price);
+	$ArticleID	= ($row->ArticleID);
+	$ArticleName = ($row->ArticleName);
+	
+		$result = <<<END
 		<div class="MPcontentOrderTd">
 			<tr><p>
-				<td>Order {$ShipmentID}:</td>
+				<td>Order: {$ShipmentID}</td>
 			<br>
-				<td>Beställt: {$Date}</td>
+				<strong><td>Beställt: {$Date}</td>
+			<br>
+				<td>Produkt: {$ArticleID} st {$ArticleName}</td>
 			<br>
 				<td>Antal: {$Amount}</td>
 			<br>
-				<td>Pris: {$Price}</td></p>
-			</tr>
+				<td>Pris: {$Price} </td></p>
+			</tr></strong>
+
 		</div class="MPcontentOrderTd">
 END;
-} 
+}
+
 echo $result
 ?>
+
+
 </div>
 	<div class="MPcontent">
 
 <br></br>
-
 
 <p> Här kan du ändra dina uppgifter, om du exempelvis flyttat.</br> Bara fyll i de nya uppgifterna och klicka på klar!</p>
 
