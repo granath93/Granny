@@ -1,3 +1,7 @@
+<!--
+DENNA FIL KOPPLAR SAMMAN WEBBSIDAN MED PAYPAL SÅ ATT BETALNINGAR ÖVER PAYPAL KAN SKE
+-->
+
 <?php
 
 $PayPalMode         = 'sandbox'; // sandbox or live
