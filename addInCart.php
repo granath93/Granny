@@ -1,13 +1,17 @@
+<!--
+DENNA FIL LÄGGER TILL PRODUKTER I KUNDVAGNEN
+-->
+
 <?php
 session_start();
 include("database.php");
 
 if(isset($_GET['ArticleID'])){
 
+  //sparar produktens artikelid
+	$articleId = isset($_GET['ArticleID']) ? $_GET['ArticleID'] : ''; 
 
-	$articleId = isset($_GET['ArticleID']) ? $_GET['ArticleID'] : '';
-
-
+//Hämtar allt från tabellen "article"
 $query = <<<END
 		SELECT * 
 		FROM article
@@ -15,17 +19,21 @@ $query = <<<END
 END;
 
 
-
+//exekverar, verkställer SELECT-satsen 
 $res = $mysqli->query($query) or die("Could not query database" . $mysqli->errno . 
 	" : " . $mysqli->error);
 
 $row = $res->fetch_object();
 
+//Om $_SESSION har något i sig görs detta
 if(isset($_SESSION['product'])){
     
         if($articleId == ""){
         
         echo "nothing set";
+        
+        //Finns det redan en produkt som användaren har lagt till i kundvagnen, 
+        //om det redan finns ett artikelID räknas artikeln upp med 1 i antal i kundvagnen
         } else {
             $idx = -1;
             foreach($_SESSION['product'] as $i => $cartItems)
@@ -39,7 +47,7 @@ if(isset($_SESSION['product'])){
             
             if ($idx == -1)
             {
-              // not found
+              // Finns det ingen produkt med samma artikelID sedan innan skapas en ny $_SESSION
               $_SESSION['product'][] = array(
                              "name" => $row->ArticleName,
                             "amount" => 1,
@@ -51,7 +59,7 @@ if(isset($_SESSION['product'])){
             }
             else
             {
-              // found product at $_SESSION[$idx]
+              // Finns det redan en produkt med samma artikelID räknas $_SESSION['amount'] upp vid detta artikelID
               echo $_SESSION['product'][$idx]['amount'] . "<br>";
               $_SESSION['product'][$idx]['amount']++;
                echo  "nummer" .  $idx . "<br />";
@@ -62,7 +70,7 @@ if(isset($_SESSION['product'])){
         }
 
     } else {
-        //create new session
+        //Har inget lagts in i $_SESSION tidigare så skapas en $_SESSION
         $_SESSION['product'][] = array(
                              "name" => $row->ArticleName,
                             "amount" => 1,
@@ -74,10 +82,8 @@ if(isset($_SESSION['product'])){
     }
   }
 
+//Skickar tillbaka användaren/kunden till kundvagnen
 header("location:shoppingcart.php");
-
-//check the cart content.
-//var_dump($_SESSION['product']);
 
 
 ?>

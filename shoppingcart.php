@@ -1,5 +1,11 @@
+<!-- 
+DENNA FIL VISAR KUNDVAGNEN FÖR ANVÄNDAREN
+-->
+
 <?php 
-$currentPage="shoppingcart";
+$currentPage="shoppingcart"; //Sparar sidans namn i en variabel som sedan används i menyn i "header.php"
+
+//SKapar tomma variabler för att senare lägga in värden i dessa
 $articleId="";
 $cart="";
 $totalPrice="";
@@ -8,115 +14,93 @@ $totalAmount="";
 
 include("database.php");
 include("header.php");
-include ("process.php");
-//include("addToOrder.php"); 
-?>
-		
+include ("paypal/process.php"); ?>
 
-		<div class="content">
+	<div class="content">
 
-		<?php if(!isset($_SESSION["username"])){ ?>
+	<?php 
+
+			//Om användaren inte är inloggad visas detta i kundvagnen
+			if(!isset($_SESSION["username"])){ ?>
 			
-			<h1>Du är inte inloggad</h1>
-			<p>Du är inte inloggad och kan då inte se dina produkter i kundvagnen. 
-			<a href="login.php">Logga in</a> för att börja lägga produkter i kundvagenen. </p> 
+				<h1>Du är inte inloggad</h1>
+					<p>Du är inte inloggad och kan då inte se dina produkter i kundvagnen. 
+					<a href="login.php">Logga in</a> för att börja lägga produkter i kundvagenen. </p> 
 
 		<?php } ?>
 
 
-<?php if(isset($_SESSION["username"])){ ?>
+	<?php 
+
+			//Är användaren inloggad visas detta i kundvagnen
+			if(isset($_SESSION["username"])){ ?>
 	
 		
-			<h1>Kundvagn</h1>
+				<h1>Kundvagn</h1>
 						
-  <p> Här ser du alla dina produkter som du lagt i kundvagnen </p>
+  					<p> Här ser du alla dina produkter som du lagt i kundvagnen </p>
+					<hr>
 
-<hr>
+	<?php 
+				//Om användaren inte har lagt något i kundvagnen än visas detta meddelande samt knapp
+				if(!isset($_SESSION['product'])){
+				
+					echo $cart="<p>Du har inte lagt något i kundvagnen ännu <a href='product.php'><button class='shoppingButton'>GÅ OCH HANDLA</p></button></a></p>";
 
-<?php 
+				}
 
-if(!isset($_SESSION['product'])){
-	echo $cart="<p>Du har inte lagt något i kundvagnen ännu <a href='product.php'><button class='shoppingButton'>GÅ OCH HANDLA</p></button></a></p>";
+				//Om anv'ndaren har lagt in något i kundvagnen
+				else{
 
-}
+					//Om användaren en gång lade en produkt i kundvagnen men ångrade sig (tog bort produkterna)
+					//ELLER om användaren har betalat för produkterna är kundvagnen tom igen
+					if(empty($_SESSION['product'])){
+						echo $cart ="<p>Finns inget i kundvagnen <a href='product.php'><button class='shoppingButton'>GÅ OCH HANDLA</p></button></a>";
+					}
 
-else{
+					//Om användaren har lagt minst en produkt i kundvagnen visas produkten med dess 
+					//detaljer och öka/minska antalet av produkter
+					else{
+						foreach($_SESSION['product'] as $i => $cartItems){
+				
+							$cart .= <<<END
 
-		if(empty($_SESSION['product'])){
-			echo $cart ="<p>Finns inget i kundvagnen <a href='product.php'><button class='shoppingButton'>GÅ OCH HANDLA</p></button></a>";
-		}
-
-		else{
-		foreach($_SESSION['product'] as $i => $cartItems){
-
-
-$cart .= <<<END
-
-
-<div class="article">
-	  <u> <p><strong>{$cartItems['name']} </strong></u></p><br>
-	  <p>Färg: <strong>  {$cartItems['color']} </strong></p><br>
-	  <img src="{$cartItems['image']}"><br>
-	   <p>Pris: <strong>{$cartItems['price']}kr</strong><br>
-	   <p>Antal: 
-
-	   <a href="addAmount.php?ArticleID={$cartItems['articleID']}&action=minus&arrayID=$i"> <strong><button> - </button></a>
-	  
-	    {$cartItems['amount']}
-
-	  <a href="addAmount.php?ArticleID={$cartItems['articleID']}&action=add&arrayID=$i"> <button> + </button></strong></a> <br>
-
-  </div>
-
+								<div class="article">
+								 	<u> <p><strong>{$cartItems['name']} </strong></u></p><br>
+								  	<p>Färg: <strong>  {$cartItems['color']} </strong></p><br>
+								  	<img src="{$cartItems['image']}"><br>
+								   	<p>Pris: <strong>{$cartItems['price']}kr</strong><br>
+								   	<p>Antal: 
+									
+									<a href="addAmount.php?ArticleID={$cartItems['articleID']}&action=minus&arrayID=$i"> <strong><button> - </button></a>
+								     {$cartItems['amount']}
+								  	<a href="addAmount.php?ArticleID={$cartItems['articleID']}&action=add&arrayID=$i"> <button> + </button></strong></a> <br>
+						  		</div>
 END;
 
+							$totalPrice += $cartItems['price']*$cartItems['amount'];
+							$totalAmount += $cartItems['amount'];
+						} 
+
+					//Skriver ut allt på sidan så som brödtext och information om produkterna
+					echo $cart;?>
+		
+				<div class="totalPrice">
+					<hr>
+					<p>Totalsumma: <strong> <?php echo $totalPrice ?></strong> kr
+					<a href="product.php"><button class="shoppingButton">HANDLA MER</p></button></a>
+					<a href="seeOrder.php"><button class="shoppingButton">BETALA PRODUKTERNA</p></button></a>
+					<p>Antal artiklar: <strong> <?php echo $totalAmount ?></strong> st
+				</div>		
+		
+
+		<?php 		}
+
+				}
+
+			} ?>
 
 
-$totalPrice += $cartItems['price']*$cartItems['amount'];
-$totalAmount += $cartItems['amount'];
-} 
-
-echo $cart;?>
-	
-	<div class="totalPrice">
-		<hr>
-	<p>Totalsumma: <strong> <?php echo $totalPrice ?></strong> kr
-	<a href="product.php"><button class="shoppingButton">HANDLA MER</p></button></a>
-	<a href="seeOrder.php"><button class="shoppingButton">BETALA PRODUKTERNA</p></button></a>
-	<p>Antal artiklar: <strong> <?php echo $totalAmount ?></strong> st
-	</div>		
-	
-
-<?php }
-
-}
-
-} ?>
-
-
-
-
-	<!--		<form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
-				<input type="hidden" name="cmd" value="_s-xclick">
-				<input type="hidden" name="hosted_button_id" value="UAYFBBQLCVHYQ">
-
-				<input type="hidden" name="item_name" value="<?php $row->ArticleName?>">
-				<input type="hidden" name="color" value="<?php $row->Color?>">
-				<input type="hidden" name="item_number" value="<?php $row->ArticleID?>">
-				<input type="hidden" name="amount" value="1">
-				
-
-				<p><input type="submit"  name="submit" value="Betala produkterna"></p>
-				
-			</form>-->
-
-
-
-
-	
-	
-	
-
-</div>
+	</div>
 
 <?php include("footer.php"); 

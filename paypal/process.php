@@ -1,8 +1,8 @@
 <?php
 
 include_once("database.php");
-include_once("paypal.php");
-include_once("paypal.class.php");
+include_once("paypal/paypal.php");
+include_once("paypal/paypal.class.php");
 
 
 $paypalmode = ($PayPalMode=='sandbox') ? '.sandbox' : '';
