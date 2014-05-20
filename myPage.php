@@ -37,7 +37,7 @@ if(!empty($_POST)) {
 			Zip='{$Zip}', 
 			Email='{$Email}', 
 			Password='{$Password}'
-		WHERE CustomerID='7';
+		WHERE CustomerID=$_SESSION[userId];
 END;
 	
 	$mysqli->query($query) or die("Could not query database" . $mysqli->errno . " : " . $mysqli->error); //Performs query 
@@ -59,6 +59,7 @@ $result = <<<END
 	
 	SELECT *
 	FROM {$tableShipment}
+	WHERE CustomerID=$_SESSION[userId]
 END;
 
 $res = $mysqli->query($result) or die ("Could not query database" . $mysqli->errno ." : " . $mysqli->error);
