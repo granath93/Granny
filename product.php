@@ -32,8 +32,8 @@ $res = $mysqli->query('SELECT * FROM article ') or die("Could not query database
 		//	$Color . "<br> Beskrivnin: " . $Description . "<br>" . $Image . "<br>"; 
 		?>
 	
-		
-		<div class="produktplacering">
+	<div class="produktplacering">
+		<p>
 			Namn: <?php echo $ArticleName; ?><br>
 			Färg: <?php echo $Color; ?><br>
 			Beskrivning: <?php echo $Description; ?><br>
@@ -42,17 +42,13 @@ $res = $mysqli->query('SELECT * FROM article ') or die("Could not query database
 			<img src="<?php echo $Image; ?>"><br><br>
 			
 			<a href="shoppingcart.php?ArticleID=<?php echo $ArticleID; ?>"><button>LÄGG I KUNDVAGN</button></a>
-			</div>
-		
+		</p>
+	</div>
+			
 	<?php } ?>
 
 <br>
 
-
-
 </div>
-
-
-
 
 <?php include("footer.php"); ?>
