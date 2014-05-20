@@ -8,8 +8,8 @@ IN TILL PAYPAL.
 <?php
 
 include_once("database.php");
-include_once("paypal/paypal.php");
-include_once("paypal/paypal.class.php");
+include_once("paypal.php");
+include_once("paypal.class.php");
 
 
 $paypalmode = ($PayPalMode=='sandbox') ? '.sandbox' : '';
@@ -191,6 +191,11 @@ if(isset($_GET["token"]) && isset($_GET["PayerID"]))
 					echo '<br /><b>Stuff to store in database :</b><br />';
 					
 					echo '<pre>';
+
+					//header("location:addToOrder.php");
+					include_once("addToOrder.php");
+
+
 					/*
 					#### SAVE BUYER INFORMATION IN DATABASE ###
 					//see (http://www.sanwebe.com/2013/03/basic-php-mysqli-usage) for mysqli usage

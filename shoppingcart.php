@@ -14,7 +14,7 @@ $totalAmount="";
 
 include("database.php");
 include("header.php");
-include ("paypal/process.php"); ?>
+include ("process.php"); ?>
 
 	<div class="content">
 

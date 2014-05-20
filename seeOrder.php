@@ -25,7 +25,7 @@ $totalAmount="";
 
 
 include("database.php");
-include ("paypal/process.php"); ?>
+include ("process.php"); ?>
 
 
 		<div class="content">
@@ -52,19 +52,16 @@ include ("paypal/process.php"); ?>
 
 			  </div>
 END;
+	?>
 
-/*
-//Skriver in all information om produkterna in i ett osynligt formulär för att kunna skicka hela
-//beställningen till paypal
-$cart .= <<<END
-<form action="paypal/process.php" method="post">
-<input type="hidden" name="item_name['{$i}']" value="{$cartItems['name']}">
-<input type="hidden" name="item_id['{$i}']" value="{$cartItems['articleID']}">
-<input type="hidden" name="item_desc['{$i}']" value="{$cartItems['color']}">
-<input type="hidden" name="item_amount['{$i}']" value="{$cartItems['amount']}">
-<input type="hidden" name="item_price['{$i}']" value="{$cartItems['price']}">
-END;
-*/
+		<!--//Skriver in all information om produkterna in i ett osynligt formulär för att kunna skicka hela
+		//beställningen till paypal-->
+			<form action="process.php" method="post">
+	<?php		echo '<input type="hidden" name="item_name['.$i.']" value="'.$cartItems['name'].'" />';
+				echo '<input type="hidden" name="item_id['.$i.']" value="'.$cartItems['articleID'].'" />';
+				echo '<input type="hidden" name="item_desc['.$i.']" value="'.$cartItems['color'].'" />';
+				echo '<input type="hidden" name="item_amount['.$i.']" value="'.$cartItems['amount'].'" />';
+
 			//Adderar alla produkter för att få en total av hur många produkter som skall köpas.
 			//Lägger även in alla priser på produkterna samt multiplicerar priserna med antal 
 			//produkter som användaren valt för att få en totalsumma för hela beställningen
@@ -81,7 +78,7 @@ END;
 			<a href="addToOrder.php"><button class="shoppingButton">BETALA PRODUKTERNA</p></button></a>
 			<p>Antal artiklar: <strong> <?php echo $totalAmount ?></strong> st
 		</div>		
-	
+</form>	
 
 <?php } ?>
 	
