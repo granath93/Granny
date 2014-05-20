@@ -36,13 +36,17 @@ include ("process.php");
 <?php 
 
 if(!isset($_SESSION['product'])){
-	echo $cart="Du har inte lagt något i kundvagnen ännu";
+	echo $cart="<p>Du har inte lagt något i kundvagnen ännu <a href='product.php'><button class='shoppingButton'>GÅ OCH HANDLA</p></button></a></p>";
 
 }
 
 else{
 
+		if(empty($_SESSION['product'])){
+			echo $cart ="<p>Finns inget i kundvagnen <a href='product.php'><button class='shoppingButton'>GÅ OCH HANDLA</p></button></a>";
+		}
 
+		else{
 		foreach($_SESSION['product'] as $i => $cartItems){
 
 
@@ -84,6 +88,8 @@ echo $cart;?>
 	
 
 <?php }
+
+}
 
 } ?>
 
