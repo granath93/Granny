@@ -8,8 +8,12 @@ IN TILL PAYPAL.
 <?php
 
 include_once("database.php");
+//include_once("header.php");
 include_once("paypal.php");
 include_once("paypal.class.php");
+
+include("header.php");
+$userid = $_SESSION['userId'];
 
 
 $paypalmode = ($PayPalMode=='sandbox') ? '.sandbox' : '';
@@ -161,8 +165,8 @@ if(isset($_GET["token"]) && isset($_GET["PayerID"]))
 	if("SUCCESS" == strtoupper($httpParsedResponseAr["ACK"]) || "SUCCESSWITHWARNING" == strtoupper($httpParsedResponseAr["ACK"])) 
 	{
 
-			echo '<h2>Success</h2>';
-			echo 'Your Transaction ID : '.urldecode($httpParsedResponseAr["PAYMENTINFO_0_TRANSACTIONID"]);
+			//echo '<h2>Success</h2>';
+			//echo 'Your Transaction ID : '.urldecode($httpParsedResponseAr["PAYMENTINFO_0_TRANSACTIONID"]);
 			
 				/*
 				//Sometimes Payment are kept pending even when transaction is complete. 
@@ -188,44 +192,63 @@ if(isset($_GET["token"]) && isset($_GET["PayerID"]))
 				if("SUCCESS" == strtoupper($httpParsedResponseAr["ACK"]) || "SUCCESSWITHWARNING" == strtoupper($httpParsedResponseAr["ACK"])) 
 				{
 					
-					echo '<br /><b>Stuff to store in database :</b><br />';
-					
+					//echo '<br /><b>Stuff to store in database :</b><br />';
+
+
+//----------------HÄR BÖRJAR MIN INSERT-SATS MED ATT VISA ATT VARA ÄR BETALD OCH TÖMMA SESSION---------------------------------------
+					//Detta är det användaren får se i sitt fönster när betalningen är klar
+					echo "<div class='content'>
+							<h1>Tack för din beställning! </h1>
+
+							<p>Tack för att du handlar hos oss!<br>
+							Dina varor är nu betalda och kommer skickas hem till din angivna adress.<br><br>
+
+							Du ser dina tidigare beställningar på <a href='myPage.php'>MIN SIDA</a>.</p>
+						
+
+						<br><br><br><br>
+							<p><a href='product.php'><button class='form'>HANDLA MER</p></button></a></p>
+
+					</div>";
+
 					echo '<pre>';
-
-					//header("location:addToOrder.php");
-					include_once("addToOrder.php");
-
-
-					/*
-					#### SAVE BUYER INFORMATION IN DATABASE ###
-					//see (http://www.sanwebe.com/2013/03/basic-php-mysqli-usage) for mysqli usage
-					//use urldecode() to decode url encoded strings.
 					
-					$buyerName = urldecode($httpParsedResponseAr["FIRSTNAME"]).' '.urldecode($httpParsedResponseAr["LASTNAME"]);
-					$buyerEmail = urldecode($httpParsedResponseAr["EMAIL"]);
-					
-					//Open a new connection to the MySQL server
-					$mysqli = new mysqli('host','username','password','database_name');
-					
+				
 					//Output any connection error
 					if ($mysqli->connect_error) {
 						die('Error : ('. $mysqli->connect_errno .') '. $mysqli->connect_error);
 					}		
-					
-					$insert_row = $mysqli->query("INSERT INTO BuyerTable 
-					(BuyerName,BuyerEmail,TransactionID,ItemName,ItemNumber, ItemAmount,ItemQTY)
-					VALUES ('$buyerName','$buyerEmail','$transactionID','$ItemName',$ItemNumber, $ItemTotalPrice,$ItemQTY)");
+
+					foreach($_SESSION['product'] as $i => $cartItems){
+
+					$totalPriceForOneArticle = $cartItems['price']*$cartItems['amount'];
+					$insert_row = $mysqli->query("INSERT INTO shipment (ArticleID, CustomerID, Amount, Price)
+							VALUES ({$cartItems['articleID']}, {$_SESSION['userId']}, {$cartItems['amount']}, {$totalPriceForOneArticle})");
 					
 					if($insert_row){
-						print 'Success! ID of last inserted record is : ' .$mysqli->insert_id .'<br />'; 
+						//print 'Success! ID of last inserted record is : ' .$mysqli->insert_id .'<br />'; 
 					}else{
 						die('Error : ('. $mysqli->errno .') '. $mysqli->error);
 					}
 					
-					*/
+		}		
 					
-					echo '<pre>';
-					print_r($httpParsedResponseAr);
+
+					//Efter att produkterna har lagts in i tabellen tömms $_SESSION
+					foreach($_SESSION['product'] as $i => $cartItems){
+
+						unset($_SESSION['product'][$i]);
+
+					} 
+
+
+//---------------HÄR SLUTAR MIN INSERT-SATS MED ATT VISA ATT VARA ÄR BETALD OCH TÖMMA SESSION---------------------------------------
+
+
+
+
+		echo '<pre>';
+					//print_r($httpParsedResponseAr);
 					echo '</pre>';
 				} else  {
 					echo '<div style="color:red"><b>GetTransactionDetails failed:</b>'.urldecode($httpParsedResponseAr["L_LONGMESSAGE0"]).'</div>';
