@@ -50,6 +50,7 @@ END;
 	$mysqli->close();
 }
 ?>
+<div class="content">
 	<div class="MPcontentOrder">
 		<br></br>
 			<p> Här kan du se dina tidigare beställningar.<br><br></p>
@@ -70,14 +71,14 @@ $res = $mysqli->query($result) or die ("Could not query database" . $mysqli->err
 	$Amount		= ($row->Amount);
 	$Price		= ($row->Price);
 	$ArticleID	= ($row->ArticleID);
-	$ArticleName = ($row->ArticleName);
+	$ArticleName = ($row->ArticleName); ?>
 	
-		$result = <<<END
+		
 		<div class="MPcontentOrderTd">
 			<tr><p>
-				<td>Order: {$ShipmentID}</td>
+				<td>Order: <?php echo $ShipmentID ?></td>
 			<br>
-				<strong><td>Beställt: {$Date}</td>
+				<strong><td>Beställt: <?php echo $Date ?></td>
 			<br>
 				<td>Produkt: {$ArticleID} st {$ArticleName}</td>
 			<br>
@@ -87,10 +88,11 @@ $res = $mysqli->query($result) or die ("Could not query database" . $mysqli->err
 			</tr></strong>
 
 		</div class="MPcontentOrderTd">
-END;
+<hr>
+<?php 
 }
 
-echo $result
+
 ?>
 
 
@@ -118,5 +120,5 @@ echo $result
  		</form>
 	</div>
 
-
+</div>
 <?php include("footer.php");?>
