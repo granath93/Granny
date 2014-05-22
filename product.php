@@ -40,8 +40,8 @@ $res = $mysqli->query('SELECT * FROM article ') or die("Could not query database
 			Pris: <?php echo $Price; ?>kr<br><br>
 			
 			<img src="<?php echo $Image; ?>"><br><br>
+			<a href="addInCart.php?ArticleID=<?php echo $ArticleID; ?>"><button>LÄGG I KUNDVAGN</button></a>
 			
-			<a href="shoppingcart.php?ArticleID=<?php echo $ArticleID; ?>"><button>LÄGG I KUNDVAGN</button></a>
 		</p>
 	</div>
 			
