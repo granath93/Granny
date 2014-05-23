@@ -146,12 +146,12 @@ p{
 }
 
 .MPcontent {
-	clear: left;
 	float: right;
 }
 
 .MPcontentOrder {
 	float: left;
+	clear: right;
 }
 
 .NCcontent {
