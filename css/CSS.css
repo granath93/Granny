@@ -169,11 +169,12 @@ width: 500px;
 height: 700px;
 margin: 50px;
 font-family: arial;
+text-align: left;
 }
 
 .produktplacering p 
 {
-border-right: 2px solid #aaaaaa;
+border: 2px solid #aaaaaa;
 height: 100%;
 
   }
