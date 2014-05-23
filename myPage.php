@@ -44,9 +44,9 @@ END;
 	
 	$mysqli->query($query) or die("Could not query database" . $mysqli->errno . " : " . $mysqli->error); //Performs query 
 	$feedback = "Dina uppgifter har ändrats";
+	session_regenerate_id(); 	
 	header("Location: myPage.php");
     }
-	$feedback = "Dina uppgifter har ändrats";
 	$mysqli->close();
 }
 ?>
@@ -60,6 +60,7 @@ $result = <<<END
 	SELECT *
 	FROM {$tableShipment}, {$tableArticle}
 	WHERE CustomerID=$_SESSION[userId] AND article.ArticleID=shipment.ArticleID
+	ORDER BY Date DESC;
 END;
 
 $res = $mysqli->query($result) or die ("Could not query database" . $mysqli->errno ." : " . $mysqli->error);
@@ -76,17 +77,14 @@ $res = $mysqli->query($result) or die ("Could not query database" . $mysqli->err
 		
 		<div class="MPcontentOrderTd">
 			<tr><p>
-				<td>Order: <?php echo $ShipmentID ?></td>
+				<td>Beställt:<strong> <?php echo $Date ?></td></strong>
 			<br>
-				<strong><td>Beställt: <?php echo $Date ?></td>
+				<td>Produkt:<strong> <?php echo $ArticleName?></td></strong>
 			<br>
-				<td>Produkt: {$ArticleID} st {$ArticleName}</td>
+				<td>Antal:<strong> <?php echo $Amount ?></td></strong>
 			<br>
-				<td>Antal: {$Amount}</td>
-			<br>
-				<td>Pris: {$Price} </td></p>
-			</tr></strong>
-
+				<td>Pris:<strong> <?php echo $Price * $Amount ?> </td></p></strong>
+			</tr>
 		</div class="MPcontentOrderTd">
 <hr>
 <?php 
@@ -94,7 +92,6 @@ $res = $mysqli->query($result) or die ("Could not query database" . $mysqli->err
 
 
 ?>
-
 
 </div>
 	<div class="MPcontent">
@@ -105,7 +102,7 @@ $res = $mysqli->query($result) or die ("Could not query database" . $mysqli->err
 
  <form action="myPage.php" method="post" id="changeID-form">
 			<p><label for ="Fname">Förnamn:</label>
- 			&nbsp; &nbsp; &nbsp; <input type="text" id="Fname" name="Fname" value=""/><br></br>
+ 			&nbsp; &nbsp; &nbsp; <input type="text" id="Fname" name="Fname" value="" /><br></br>
  			<label for ="Lname">Efternamn:</label>
  			&nbsp; &nbsp; <input id="Lname" name="Lname" value=""/><br></br>
   			<label for ="Address">Adress:</label>
@@ -121,4 +118,5 @@ $res = $mysqli->query($result) or die ("Could not query database" . $mysqli->err
 	</div>
 
 </div>
+
 <?php include("footer.php");?>
