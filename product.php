@@ -1,13 +1,16 @@
 
 <?php 
 $currentPage="product";
-
+/* INKLUDERA DATABAS OCH HEADER*/
 include("database.php");
 include("header.php");  
+
+/* SELECTSATS FÖR ATT FÅ UT ARTICLE FRÅN DATABASEN */
 
 $res = $mysqli->query('SELECT * FROM article ') or die("Could not query database" . $mysqli->errno . 
 	" : " . $mysqli->error);?>
 	
+	<!--INFORMATION OM PRODUKTSIDAN -->
 		<div class="content">
 		
 <h1>Produkt</h1>	
@@ -15,7 +18,7 @@ $res = $mysqli->query('SELECT * FROM article ') or die("Could not query database
 <h2>Produkter vi säljer</h2>
 <h3>Beräknad leveranstid 3-4 arbetsdagar.<br>Klicka på produktens bild för större bild</h3>
 		
-	
+	<!-- LOOP FÖR ATT HÄMTA UT INFORMATION OM PRODUKTERNA -->
 <?php
 	while($row = $res->fetch_object()) { 
 	$ArticleID = ($row->ArticleID);
@@ -32,6 +35,7 @@ $res = $mysqli->query('SELECT * FROM article ') or die("Could not query database
 		//	$Color . "<br> Beskrivnin: " . $Description . "<br>" . $Image . "<br>"; 
 		?>
 	
+	<!-- HÄR VISAS PRODUKTERNA MED BLAND ANNAT BILD -->
 	<div class="produktplacering">
 		<p>
 			Namn: <?php echo $ArticleName; ?><br>
@@ -50,5 +54,5 @@ $res = $mysqli->query('SELECT * FROM article ') or die("Could not query database
 <br>
 
 </div>
-
+<!--INKLUDERA FOOTER -->
 <?php include("footer.php"); ?>
