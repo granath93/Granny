@@ -8,6 +8,7 @@ include("header.php");
 $feedback = '';
  
 if(!empty($_POST)) {
+	/* Kollar tomma fält i input-fields */
 
 		$table = "customer";
 		
@@ -20,6 +21,7 @@ if(!empty($_POST)) {
 		
 			if($Fname == '' || $Lname == '' || $Address == '' || $Zip == '' || $Email == '' || $Password == ''){
 				$feedback = "Du missade att fylla i ett fält";
+				/* Om fält är tomma visas ett error-feedback */
 			} 
 				else{
 				$Fname 		= utf8_encode($mysqli->real_escape_string($Fname)); 
@@ -38,6 +40,7 @@ END;
 	$mysqli->query($query) or die("Could not query database" . $mysqli->errno . " : " . $mysqli->error); //Performs query 
 	$feedback = "Your post has been added";
 	header("Location: login.php");
+	/* Om alla fält fyllts i skapas en ny kund i databsen och kunden skickas till inloggningssidan */
 	
 }
 
@@ -76,4 +79,8 @@ $mysqli->close();
 	</div>
 
 	
-<?php include("footer.php"); ?>
+<?php 
+
+/* HTML-form för att skapa ny kund där fälten kopplas mot en insert-sats. */
+
+include("footer.php"); ?>

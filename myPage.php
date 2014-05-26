@@ -10,6 +10,7 @@ $feedback = '';
 
 
 if(!empty($_POST)) {
+	/* Kollar tomma fält*/
         
 		$table = "customer";
 		
@@ -22,6 +23,7 @@ if(!empty($_POST)) {
 		
 			if($Fname == '' || $Lname == '' || $Address == '' || $Zip == '' || $Email == ''|| $Password == ''){
 				$feedback = "Fyll i alla fält";
+				/* om något fält är tomt ger ett error-feedback */
 			}
 			else {
 				$Fname 		= utf8_encode($mysqli->real_escape_string($Fname)); 
@@ -48,6 +50,7 @@ END;
 	header("Location: myPage.php");
     }
 	$mysqli->close();
+	/* Om fälten är ifyllda skickas informationen in i databasen och kundenkan logga in på sitt konto */
 }
 ?>
 <div class="content">
@@ -64,7 +67,7 @@ $result = <<<END
 END;
 
 $res = $mysqli->query($result) or die ("Could not query database" . $mysqli->errno ." : " . $mysqli->error);
-	
+	/*Hämtar alla ordrar ur shipment-tabellen där kundens ID stämmer */
 	while($row = $res->fetch_object()) {
 	
 	$ShipmentID	= ($row->ShipmentID);
@@ -74,7 +77,7 @@ $res = $mysqli->query($result) or die ("Could not query database" . $mysqli->err
 	$ArticleID	= ($row->ArticleID);
 	$ArticleName = ($row->ArticleName); ?>
 	
-		
+
 		<div class="MPcontentOrderTd">
 			<tr><p>
 				<td>Beställt:<strong> <?php echo $Date ?></td></strong>
@@ -87,9 +90,11 @@ $res = $mysqli->query($result) or die ("Could not query database" . $mysqli->err
 			</tr>
 		</div class="MPcontentOrderTd">
 <hr>
+
 <?php 
 }
 
+/* de ordrar som hämtats ur databasen visas upp i en "table" där databasens rader ordnas efter tid/datum samt ger ett summerat order-oris */
 
 ?>
 
@@ -108,7 +113,7 @@ $res = $mysqli->query($result) or die ("Could not query database" . $mysqli->err
   			<label for ="Address">Adress:</label>
  			&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <input type="text" id="Address" name="Address" value=""/><br></br>
   			<label for ="Zip">Postnummer:</label>
- 			<input type="number" id="Zip" name="Zip" value=""/><br></br>
+ 			<input type="number" id="Zip" name="Zip" value="" size="5"/><br></br>
  			<label for ="Email">E-post:</label>
  			&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <input type="text" id="Email" name="Email" value="" /><br></br>
  			<label for ="Password">Lösenord:</label>
@@ -119,4 +124,8 @@ $res = $mysqli->query($result) or die ("Could not query database" . $mysqli->err
 
 </div>
 
-<?php include("footer.php");?>
+<?php 
+
+/* Ett HTML-form som uppdatterar kundens uppgifter som skrivs in i fälten. */
+
+include("footer.php");?>
