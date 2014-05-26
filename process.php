@@ -8,7 +8,6 @@ IN TILL PAYPAL.
 <?php
 
 include_once("database.php");
-//include_once("header.php");
 include_once("paypal.php");
 include_once("paypal.class.php");
 
@@ -179,8 +178,8 @@ if(isset($_GET["token"]) && isset($_GET["PayerID"]))
 				}
 				elseif('Pending' == $httpParsedResponseAr["PAYMENTINFO_0_PAYMENTSTATUS"])
 				{
-					echo '<div style="color:red">Transaction Complete, but payment is still pending! '.
-					'You need to manually authorize this payment in your <a target="_new" href="http://www.paypal.com">Paypal Account</a></div>';
+					/*echo '<div style="color:red">Transaction Complete, but payment is still pending! '.
+					'You need to manually authorize this payment in your <a target="_new" href="http://www.paypal.com">Paypal Account</a></div>';*/
 				}
 
 				// we can retrive transection details using either GetTransactionDetails or GetExpressCheckoutDetails
@@ -194,23 +193,33 @@ if(isset($_GET["token"]) && isset($_GET["PayerID"]))
 					
 					//echo '<br /><b>Stuff to store in database :</b><br />';
 
-
+					$res = $mysqli->query("SELECT * FROM customer WHERE CustomerID ='$userid' LIMIT 1");
+					while($row = $res->fetch_object()) { 
+					$fname = utf8_decode($row->Fname);
+					$ename = utf8_decode($row->Lname);
+					$address = utf8_decode($row->Address);
+					$zip = utf8_decode($row->Zip);
+					$email = utf8_decode($row->Email);
+	
 //----------------HÄR BÖRJAR MIN INSERT-SATS MED ATT VISA ATT VARA ÄR BETALD OCH TÖMMA SESSION---------------------------------------
 					//Detta är det användaren får se i sitt fönster när betalningen är klar
 					echo "<div class='content'>
 							<h1>Tack för din beställning! </h1>
 
 							<p>Tack för att du handlar hos oss!<br>
-							Dina varor är nu betalda och kommer skickas hem till din angivna adress.<br><br>
+							Dina varor är nu betalda och kommer skickas hem till dina angivna personuppgifter och adress.<br><br>";
 
-							Du ser dina tidigare beställningar på <a href='myPage.php'>MIN SIDA</a>.</p>
+							echo "Namn: <strong>" . $fname . " ". $ename . "</strong> <br>" ."Adress: <strong>" . $address ."</strong><br>" . "Postnummer: <strong>" . $zip ."</strong><br><br>";
+
+
+						echo "Du ser dina tidigare beställningar på <a href='myPage.php'>MIN SIDA</a>.</p>
 						
 
 						<br><br><br><br>
 							<p><a href='product.php'><button class='form'>HANDLA MER</p></button></a></p>
 
 					</div>";
-
+}
 					echo '<pre>';
 					
 				

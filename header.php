@@ -33,7 +33,7 @@ DENNA FIL STARTAR VARJE SIDA PÅ WEBBSIDAN SAMT INFOGAR MENYN
 		$loginName="LOGGA IN";
 		$loginImg = "images/loggain.png";
 		$memberUrl="createMember.php";
-		$memberName="SKAFFA INLOGGNING";
+		$memberName="SKAFFA KONTO";
 		$memberImg = "images/skaffain.png";
 	}
 

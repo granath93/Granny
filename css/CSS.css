@@ -127,6 +127,8 @@ p{
 .logga{
 	text-align: center;
 	margin:20px;
+	margin-left:150px;
+	margin-right:auto;
 }
 
 .loginContent{
@@ -144,12 +146,12 @@ p{
 }
 
 .MPcontent {
-	clear: left;
 	float: right;
 }
 
 .MPcontentOrder {
 	float: left;
+	clear: right;
 }
 
 .NCcontent {
@@ -231,34 +233,18 @@ height: 100%;
 }
 
 
-@media screen and (max-width: 1000px){
+@media screen and (max-width: 1100px){
 	.topNav button{max-width: 15%}
 	.topNav button{max-height: 20%}
 	.topNav button{font-size: 75%}
 	.footerContent{max-width: 15%}
 	.footerContent{max-height: 15%}
 	.content{width: 50%}
-	p{font-size: 100%}
 	h1{text-align: center}
 	.NCcontent{margin-left: 30%}
 	.NCcontent{margin-right: 30%}
 	.MPcontentOrder{text-align: center}
+	.FAQtant{display: none;}
+	.logga{margin-left: 3%}
 
 }	
-
-
-}
-@media screen and (max-width: 800px){
-	.topNav button{max-width: 15%}
-	.topNav button{max-height: 20%}
-	.topNav button{font-size: 75%}
-	.footerContent{max-width: 15%}
-	.footerContent{max-height: 15%}
-	.content{width: 50%}
-	p{font-size: 100%}
-	h1{text-align: center}
-	.NCcontent{margin-left: 30%}
-	.NCcontent{margin-right: 30%}
-	.MPcontentOrder{text-align: center}
-
-}
