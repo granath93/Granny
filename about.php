@@ -1,19 +1,18 @@
 
 <?php 
 date_default_timezone_set('Europe/London');
+/*INKLUDERA DATABAS*/
 $mysqli = new mysqli('localhost', 'md05phhe', 'uT04TAfxv_', 'md05phhe_db');
 $currentPage="about";
-
+/*INKLUDERA DATABAS OCH HEADER*/
 include("database.php");
 include("header.php"); 
 ?>
-
+<!-- KLASS FÖR ATT FÅ TEXTEN PÅ RÄTT PLATS PÅ SIDAN -->
 <div class="content">
-
-
-
+<!--INFORMATION OM FÖRETAGET -->
 <h1>Om företaget</h1>	
-<p>Vi skapade företaget Stödshoppen för att underlätta pensionärers vardag.<br>
+	<p>Vi skapade företaget Stödshoppen för att underlätta pensionärers vardag.<br>
 	Vi är fyra studenter på Högskolan i Halmstad som har utvecklat denna hemsidan.</p>
 
 	<h2>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
@@ -31,9 +30,9 @@ if(!empty($_POST)) {
 	$spamTest = isset($_POST['address']) ? $_POST['address'] : '';
 	
 	if($spamTest != '') {
-		die("I think you're a robot. If you're not, go back and try again.");
+		die(" ");
 	}
-	
+	/* OM ALLA FÄLT INTE FYLLS I */
 	if($name == '' || $email == '' || $msg == '') {
 		$form = formHTML($name, $email, $msg);
 		$content = <<<END
@@ -44,6 +43,7 @@ if(!empty($_POST)) {
 			</div><!-- container -->
 			
 END;
+	/*MAILET SKICKAS FRAMGÅNGSRIKT */
 	} else {
 		
 		foreach($_POST as $value) {
@@ -68,7 +68,7 @@ END;
 			</div><!-- container -->
 			
 END;
-
+		/* MAILET SKICKAS INTE */
 		} else {
 			$content = <<<END
 			
@@ -103,6 +103,7 @@ function formHTML($name = "", $email = "", $msg = "") {
 	$email 	= htmlspecialchars($email);
 	$msg 	= htmlspecialchars($msg);
 	
+	/* FORMULÄRET TILL MAILET*/
 	return <<<END
 				
 		<div class="fieldset1">
@@ -130,7 +131,7 @@ END;
 echo $content;
 
 ?>
-
+	<!--INKLUDERA FOOTER -->
 <?php include("footer.php"); ?>
 
 
